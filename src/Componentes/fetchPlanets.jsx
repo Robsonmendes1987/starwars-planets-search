@@ -1,12 +1,3 @@
-// const fetch = require('node-fetch');
-
-// export default fetchPlanets = async () => {
-//   const URL = 'https://swapi-trybe.herokuapp.com/api/planets';
-//   const response = await fetch(URL);
-//   const json = await response.json();
-//   return console.log(json);
-// };
-
 const fetchPlanetsApi = async () => {
   const URL = 'https://swapi-trybe.herokuapp.com/api/planets';
   const response = await fetch(URL);

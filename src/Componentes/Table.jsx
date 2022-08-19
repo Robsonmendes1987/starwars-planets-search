@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import fetchPlanetsApi from './fetchPlanets';
+// import { element } from 'prop-types';
+import React, { useContext, useState } from 'react';
+// import { useState } from 'react';
+// import fetchPlanetsApi from './fetchPlanets';
+// import PlanetProvider from './PlanetProvider';
+import AppContext from './AppContext';
 
 function Table() {
-  // console.log(list);
-  // async function a () {
-  //  const test = await fetchPlanetsApi;
-  // }
-
-  // const { fetchPlanetsApi } = useContext()
-  const [data, setData] = useState([]);
-  // const [text, value] = useState('');
-  // console.log(setData);
-
-  const space = async () => {
-    const get = await fetchPlanetsApi();
-    setData(get);
-    console.log(get);
-  };
-
-  useEffect(() => {
-    space();
-  }, []);
-
-  // handleChange = ({ target }) => {
-  //   const {name,value} = target;
-  //   setData([name] = value)
-  // }
+  const { inputtext } = useState('');
+  const { contextValue: { data, saveText } } = useContext(AppContext);
 
   return (
     <main>
+      <label htmlFor="name">
 
+        <input
+          type="text"
+          // value={ text }
+          id="name"
+          name="inputEmail"
+          value={ inputtext }
+          onChange={ (e) => saveText(e.target.value) }
+          data-testid="name-filter"
+        />
+      </label>
       <table>
         <thead>
           <tr>
