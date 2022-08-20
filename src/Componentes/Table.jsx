@@ -6,23 +6,53 @@ import React, { useContext, useState } from 'react';
 import AppContext from './AppContext';
 
 function Table() {
+  // const [getArray, setArray] = useState([]);
   const { inputtext } = useState('');
-  const { contextValue: { data, saveText } } = useContext(AppContext);
+  const {
+    contextValue: {
+      filter,
+      data,
+      getInput,
+      setInput,
+    },
+  } = useContext(AppContext);
 
+  // const x = () => (data.length === 0 ? data : getText);
+  // console.log(x);
+
+  // const saveFunction = x();
+  const retorno = () => (getInput.length === 0 ? data : filter);
+
+  const x = retorno();
+
+  // useEffect(() => {
+  //   x;
+  //   // x();
+  // }, []);
+
+  // console.log(getText);
+  // const getFilter = data.filter((element) => element.startsWith());
   return (
     <main>
-      <label htmlFor="name">
 
+      <label htmlFor="name">
         <input
           type="text"
           // value={ text }
           id="name"
           name="inputEmail"
           value={ inputtext }
-          onChange={ (e) => saveText(e.target.value) }
+          onChange={ (e) => setInput(e.target.value) }
           data-testid="name-filter"
         />
       </label>
+      {/* <ul>
+          {filterData.map((search) => (
+            <li>{search}</li>
+          ))}
+
+        </ul> */}
+
       <table>
         <thead>
           <tr>
@@ -42,7 +72,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {data.map(
+          {x.map(
             ({
               name,
               rotation_period: ROTATION_PERIOD,
