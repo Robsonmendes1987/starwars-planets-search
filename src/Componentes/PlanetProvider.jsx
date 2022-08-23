@@ -2,17 +2,32 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import AppContext from './AppContext';
 import fetchPlanetsApi from './fetchPlanets';
-
+// import testData from '../../cypress/mocks/testData';
 function PlanetProvider({ children }) {
-  const [filter, setfilter] = useState([]);
+  const [filter, setFilter] = useState([]);
   const [getInput, setInput] = useState([]);
   const [data, setData] = useState([]);
+  const [getIfoInput, setInfoIput] = useState('');
+  const [filterNumber, setFilterNumber] = useState({
+    column: 'population',
+    comparison: 'maior que',
+    value: 0,
+  });
+  const [numberfilt, setNumberFilt] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+
+  ]);
+  const [filterArr, setFilterArr] = useState([]);
 
   const space = async () => {
     const get = await fetchPlanetsApi();
     setData(get);
+    setFilter(get);
     // getText(setData);
-    // console.log(getText);
   };
 
   useEffect(() => {
@@ -21,28 +36,45 @@ function PlanetProvider({ children }) {
 
   const funçao = () => {
     const getDta = data.filter(({ name }) => name.includes(getInput));
-    setfilter(getDta);
-    console.log(getDta);
+    setFilter(getDta);
+    // setData(getDta);
   };
-  // console.log(data);
 
   useEffect(() => {
-    funçao();
     // funçao();
+    funçao();
     // space();
   }, [getInput]);
 
-  // filterData.filter((search) => console.log(search));
+  //  const get = async () => {
+  //   const save = await fetchPlanetsApi();
+  //   console.log(save);
+  //   // const x = data.every((element) => element.includes);
+  //   setInfoIput(save);
+  // };
+  // useEffect(() => {
+  //   get();
+  //   // funçao();
+  //   // space();
+  // }, []);
 
   const contextValue = {
     filter,
-    setfilter,
+    setFilter,
     data,
     setData,
     space,
     getInput,
     setInput,
     funçao,
+    numberfilt,
+    setNumberFilt,
+    getIfoInput,
+    setInfoIput,
+    filterNumber,
+    setFilterNumber,
+    filterArr,
+    setFilterArr,
   };
 
   return (

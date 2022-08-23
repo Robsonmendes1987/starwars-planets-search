@@ -11,8 +11,6 @@ function Table() {
   const {
     contextValue: {
       filter,
-      data,
-      getInput,
       setInput,
     },
   } = useContext(AppContext);
@@ -21,14 +19,13 @@ function Table() {
   // console.log(x);
 
   // const saveFunction = x();
-  const retorno = () => (getInput.length === 0 ? data : filter);
-
-  const x = retorno();
+  // const retorno = () => (getInput.length === 0 ? data : filter);
+  // const retorno = () => (getInput.length === 0 ? data : filter);
+  // const x = retorno();
 
   // useEffect(() => {
-  //   x;
   //   // x();
-  // }, []);
+  // }, [data]);
 
   // console.log(getText);
   // const getFilter = data.filter((element) => element.startsWith());
@@ -72,7 +69,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {x.map(
+          {filter.map(
             ({
               name,
               rotation_period: ROTATION_PERIOD,
