@@ -41,6 +41,7 @@ function Table() {
           value={ inputtext }
           onChange={ (e) => setInput(e.target.value) }
           data-testid="name-filter"
+          aria-label="cost-input"
         />
       </label>
       {/* <ul>

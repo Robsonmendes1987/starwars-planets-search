@@ -59,7 +59,29 @@ describe('I am your test', () => {
         expect(title13).toBeInTheDocument()
 
       })
-      
+      it('tste', () => {
+        // global.fetch = jest.fn(() => Promise.resolve({
+        //   json: () => Promise.resolve(mokData)
+        // }))
+        
+        render(
+          <PlanetProvider  >
+          < App />
+            </PlanetProvider>);
+            const getinput = screen.getByTestId('column-filter');
+            userEvent.selectOptions(getinput, 'population');
+            expect(getinput).toHaveValue('population') 
+            
+            const getinput2 = screen.getByTestId('comparison-filter');
+            userEvent.selectOptions(getinput2, 'menor que');
+            expect(getinput2).toHaveValue('menor que') 
+            
+            // const getinput3 = screen.getByTestId('value-filter')
+            // userEvent.type(getinput3, '10');
+            // expect(getinput3).toHaveValue('10') 
+            
+
+      })
     });
     
   

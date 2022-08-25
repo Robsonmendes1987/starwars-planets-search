@@ -16,7 +16,7 @@ function FilterPlanets() {
     },
   } = useContext(AppContext);
   // setvalue(numberfilt);
-  console.log(filter);
+  // console.log(filter);
 
   const hendlerIput = ({ target }) => {
     const { name, value } = target;
@@ -39,13 +39,13 @@ function FilterPlanets() {
       }
       if (
         comparison === 'maior que'
-        && Number(element[column]) > Number(value)
+          && Number(element[column]) > Number(value)
       ) {
         return element;
       }
       if (
         comparison === 'igual a'
-        && Number(element[column]) === Number(value)
+            && Number(element[column]) === Number(value)
       ) {
         return element;
       }
@@ -61,6 +61,7 @@ function FilterPlanets() {
 
     setFilter(getFilter);
   };
+  console.log(filter);
 
   // useEffect(() => {
   //   // setData;
@@ -80,10 +81,6 @@ function FilterPlanets() {
             <option key={ index }>{element}</option>
           ))}
 
-          {/* <option>population</option>
-          <option>rotation_period</option>
-          <option>surface_water</option>
-          <option>diameter</option> */}
         </select>
 
         <select
@@ -112,6 +109,7 @@ function FilterPlanets() {
         >
           Filtrar
         </button>
+
         <Table />
       </label>
 
