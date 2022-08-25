@@ -46,18 +46,6 @@ function PlanetProvider({ children }) {
     // space();
   }, [getInput]);
 
-  //  const get = async () => {
-  //   const save = await fetchPlanetsApi();
-  //   console.log(save);
-  //   // const x = data.every((element) => element.includes);
-  //   setInfoIput(save);
-  // };
-  // useEffect(() => {
-  //   get();
-  //   // funçao();
-  //   // space();
-  // }, []);
-
   const contextValue = {
     filter,
     setFilter,
