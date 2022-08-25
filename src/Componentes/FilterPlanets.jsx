@@ -4,12 +4,19 @@ import AppContext from './AppContext';
 import Table from './Table';
 
 function FilterPlanets() {
-  const { contextValue: {
-    filterNumber,
-    setFilterNumber,
-    filter,
-    setFilter,
-  } } = useContext(AppContext);
+  // const [value, setvalue] = useState([]);
+  const {
+    contextValue: {
+      filterNumber,
+      setFilterNumber,
+      filter,
+      setFilter,
+      numberfilt,
+      setNumberFilt,
+    },
+  } = useContext(AppContext);
+  // setvalue(numberfilt);
+  console.log(filter);
 
   const hendlerIput = ({ target }) => {
     const { name, value } = target;
@@ -19,27 +26,40 @@ function FilterPlanets() {
     });
   };
 
+  // console.log(numberfilt);
   const eventClcick = () => {
-    // console.log(filter);
     const { column, comparison, value } = filterNumber;
     console.log(column, comparison, value);
     const getFilter = filter.filter((element) => {
-      if (comparison === 'menor que' && (Number(element[column]) < Number(value))) {
+      if (
+        comparison === 'menor que'
+        && Number(element[column]) < Number(value)
+      ) {
         return element;
       }
-      if (comparison === 'maior que' && (Number(element[column]) > Number(value))) {
+      if (
+        comparison === 'maior que'
+        && Number(element[column]) > Number(value)
+      ) {
         return element;
       }
-      if (comparison === 'igual a' && (Number(element[column]) === Number(value))) {
+      if (
+        comparison === 'igual a'
+        && Number(element[column]) === Number(value)
+      ) {
         return element;
       }
-      // const filterOPtion = numberfilt.filter((ele) => ele !== column);
-      // setNumberFilt(filterOPtion);
+
+      const deletValue = numberfilt.filter((ele) => ele !== column);
+      setNumberFilt(deletValue);
+      setFilterNumber({
+        column: numberfilt[0],
+      });
+
       return 0;
     });
-    // setFilterArr(getFilter);
+
     setFilter(getFilter);
-    console.log(getFilter);
   };
 
   // useEffect(() => {
@@ -49,17 +69,21 @@ function FilterPlanets() {
   return (
     <main>
       <label htmlFor="getNumber">
-
         <select
           data-testid="column-filter"
           onChange={ hendlerIput }
           name="column"
+
         >
-          <option>population</option>
-          <option>orbital_period</option>
+          {numberfilt.map((element, index) => (
+
+            <option key={ index }>{element}</option>
+          ))}
+
+          {/* <option>population</option>
           <option>rotation_period</option>
           <option>surface_water</option>
-          <option>diameter</option>
+          <option>diameter</option> */}
         </select>
 
         <select
@@ -87,7 +111,6 @@ function FilterPlanets() {
           onClick={ eventClcick }
         >
           Filtrar
-
         </button>
         <Table />
       </label>
@@ -95,7 +118,6 @@ function FilterPlanets() {
       {/* {data.map(({ population, orbital_period, diameter, rotation_period, surface_water }) => (
 
         ))} */}
-
     </main>
   );
 }
